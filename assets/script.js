@@ -1,3 +1,26 @@
+const slider = document.querySelector(".banner");
+const previousButton = document.querySelector(".arrow_left");
+const nextButton = document.querySelector(".arrow_right");
+
+
+// flêche de gauche
+function previous (){
+	
+};
+
+previousButton.addEventListener("onclick",previous);
+alert("à gauche ok");	
+
+// flêche de droite
+function next (){
+	
+};
+
+nextButton.addEventListener("onclick",next);
+alert("à droite ok");	
+
+
+
 const slides = [
 	{
 		"image":"slide1.jpg",
