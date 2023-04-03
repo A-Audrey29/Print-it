@@ -1,21 +1,11 @@
+// DOM
 const  slideShow = document.getElementById("banner")
-const slide = document.querySelector(".banner-img")
+// const slide = document.querySelector(".banner-img")
 const previousSlide = document.getElementById("previous_btn")
 const nextSlide = document.getElementById("next_btn")
-const slider = document.querySelector(".slider")
+const dot = document.querySelector('dot')
 
-nextSlide.addEventListener("click", () => {
-	const slideWidth = slide.clientWidth
-	slideShow.scrollLeft += slideWidth
-	console.log(slideWidth)
-})
-
-previousSlide.addEventListener("click", () => {
-	const slideWidth = slide.clientWidth
-	slideShow.scrollLeft -= slideWidth
-	console.log(slideWidth)
-	previousSlide.classList.add(".banner-img")
-})
+// const slider = document.querySelector(".slider")
 
 const slides = [
 	{
@@ -36,15 +26,59 @@ const slides = [
 	}
 ];
 
-
+// boucle créer avec Charles
 for (let index = 0; index < slides.length; index++) {
 	const data = slides[index]
 	const image = document.createElement("img") 
 	image.setAttribute("src",data.src)
-	console.log(image)
+	// console.log(image)
 	banner.appendChild(image)
-	banner.classList.add(".banner")
+	banner.classList.add("banner")
 }
+
+	// insetion des images
+slides.map((slideSrc, index) => {
+	const slideElement = document.createElement('img')
+	slideElement.src = slideSrc
+	slideElement.id = index
+	slideElement.classList.add('.banner-img')
+	slideShow.appendChild(slideElement)
+
+
+	// bullet points
+const dotElement = document.createElement("a")
+dotElement.href = `#${index}`
+dotElement.classList.add('.dot')
+dot.appendChild(dotElement)
+})	
+
+	// flêches 
+nextSlide.addEventListener("click", () => {
+   const slideWidth = slides.clientWidth
+	slideShow.scrollLeft += slideWidth
+	console.log(slideWidth)
+	nextSlide.classList.add(".banner-img")
+
+})
+
+previousSlide.addEventListener("click", () => {
+	const slideWidth = slides.clientWidth
+	slideShow.scrollL eft -= slideWidth
+	console.log(slideWidth)
+	previousSlide.classList.add(".banner-img")
+})
+
+// const slideWidth = slides.clientWidth
+
+// slideShow.scrollTo(0,0)
+// let currentIndex = 0
+// currentIndex === 0
+// ? (previousSlide.style.display = "none")
+//     : (previousSlide.style.display = "block");
+// document.querySelector(`a[href='#${currentIndex}']`).classList.add("active");
+
+
+
 
 
 
