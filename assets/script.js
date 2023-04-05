@@ -1,11 +1,12 @@
 // DOM
 const  slideShow = document.getElementById("banner")
-// const slide = document.querySelector(".banner-img")
-const previousSlide = document.getElementById("previous_btn")
-const nextSlide = document.getElementById("next_btn")
-const dot = document.querySelector('dot')
-
-// const slider = document.querySelector(".slider")
+const slide = document.querySelector(".banner-img")
+const previousSlide = document.querySelector(".arrow_left")
+const nextSlide = document.querySelector(".arrow_right")
+const dots = document.getElementById("dots")
+const tagLine = document.getElementById("tag-line")
+let compteur = 0
+let oldDot
 
 const slides = [
 	{
@@ -26,8 +27,64 @@ const slides = [
 	}
 ];
 
-// boucle créer avec Charles
-for (let index = 0; index < slides.length; index++) {
+	// insetion des points
+slides.map((slideSrc, index) => {
+	// bullet points
+	const dotElement = document.createElement("a")
+	dotElement.href = `#${index}`
+	dotElement.classList.add('dot')
+	dots.appendChild(dotElement)
+})
+
+	// sélect par défaut du premier point
+let firstDot = dots.children[0]
+firstDot.classList.add("dot_selected")
+oldDot = firstDot
+
+	// event flèche 
+nextSlide.addEventListener("click", () => {
+	if (oldDot) {
+		oldDot.classList.remove("dot_selected")
+	}
+	
+	//incrémenter le compteur
+	compteur++
+	if (compteur == slides.length){
+		compteur = 0
+	}
+	//récupérer la source de la prochaine image depuis le tableau slides
+	let obj = slides[compteur]
+	let currentDot = dots.children[compteur]
+	//modifier l'attribut src du banner-img avec la nouvelle source
+	slide.setAttribute("src", obj.src)
+	tagLine.innerHTML = obj.tagLine
+	currentDot.classList.add("dot_selected")
+
+	oldDot = currentDot
+})
+
+previousSlide.addEventListener("click", () => {
+	if (oldDot) {
+		oldDot.classList.remove("dot_selected")
+	}
+	if (compteur == 0) {
+		compteur = slides.length
+	}
+	//récupérer la balise banner-img 
+	//incrémenter le compteur
+	compteur--
+	//récupérer la source de la prochaine image depuis le tableau slides
+	let obj = slides[compteur]
+	let currentDot = dots.children[compteur]
+	//modifier l'attribut src du banner-img avec la nouvelle source
+	slide.setAttribute("src", obj.src)
+	tagLine.innerHTML = obj.tagLine
+	currentDot.classList.add("dot_selected")
+
+	oldDot = currentDot
+})
+
+/*for (let index = 0; index < slides.length; index++) {
 	const data = slides[index]
 	const image = document.createElement("img") 
 	image.setAttribute("src",data.src)
@@ -35,54 +92,4 @@ for (let index = 0; index < slides.length; index++) {
 	banner.appendChild(image)
 	banner.classList.add("banner")
 }
-
-	// insetion des images
-slides.map((slideSrc, index) => {
-	const slideElement = document.createElement('img')
-	slideElement.src = slideSrc
-	slideElement.id = index
-	slideElement.classList.add('.banner-img')
-	slideShow.appendChild(slideElement)
-
-
-	// bullet points
-const dotElement = document.createElement("a")
-dotElement.href = `#${index}`
-dotElement.classList.add('.dot')
-dot.appendChild(dotElement)
-})	
-
-	// flêches 
-nextSlide.addEventListener("click", () => {
-   const slideWidth = slides.clientWidth
-	slideShow.scrollLeft += slideWidth
-	console.log(slideWidth)
-	nextSlide.classList.add(".banner-img")
-
-})
-
-previousSlide.addEventListener("click", () => {
-	const slideWidth = slides.clientWidth
-	slideShow.scrollL eft -= slideWidth
-	console.log(slideWidth)
-	previousSlide.classList.add(".banner-img")
-})
-
-// const slideWidth = slides.clientWidth
-
-// slideShow.scrollTo(0,0)
-// let currentIndex = 0
-// currentIndex === 0
-// ? (previousSlide.style.display = "none")
-//     : (previousSlide.style.display = "block");
-// document.querySelector(`a[href='#${currentIndex}']`).classList.add("active");
-
-
-
-
-
-
-// const cle = "image"
-// console.log(slides[2][cle]);
-// console.log(slides[2].tagLine);
-// console.log(image)
+*/
