@@ -31,6 +31,7 @@ const slides = [
 slides.map((slideSrc, index) => {
 	// bullet points
 	const dotElement = document.createElement("a")
+	console.log(dotElement);
 	dotElement.href = `#${index}`
 	dotElement.classList.add('dot')
 	dots.appendChild(dotElement)
