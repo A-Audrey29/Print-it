@@ -27,6 +27,8 @@ const slides = [
 	}
 ];
 
+dots.classList.add("dots")
+
 	// insetion des points
 slides.map((slideSrc, index) => {
 	// bullet points
