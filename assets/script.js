@@ -70,11 +70,10 @@ previousSlide.addEventListener("click", () => {
 	if (oldDot) {
 		oldDot.classList.remove("dot_selected")
 	}
+	//décrémenter le compteur
 	if (compteur == 0) {
 		compteur = slides.length
 	}
-	//récupérer la balise banner-img 
-	//incrémenter le compteur
 	compteur--
 	//récupérer la source de la prochaine image depuis le tableau slides
 	let obj = slides[compteur]
@@ -86,13 +85,3 @@ previousSlide.addEventListener("click", () => {
 
 	oldDot = currentDot
 })
-
-/*for (let index = 0; index < slides.length; index++) {
-	const data = slides[index]
-	const image = document.createElement("img") 
-	image.setAttribute("src",data.src)
-	// console.log(image)
-	banner.appendChild(image)
-	banner.classList.add("banner")
-}
-*/
